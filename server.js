@@ -8,7 +8,7 @@ const app = express();
 
 //Reads .env file for PORT number
 require('dotenv').config();
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3008;
 
 //Allows us to recognize JSON, strings, and array objects
 app.use(express.json());
