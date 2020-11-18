@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const clientSchema = mongoose.Schema({
+const productSchema = mongoose.Schema({
   name: {type: String, required: true},
   price: {type: Number, required: false},
   img: {url: String, required: false},
@@ -9,6 +9,6 @@ const clientSchema = mongoose.Schema({
   color: {type: String, required: false},
   strap: {type: String, required: false},
   interchangeable: {type: Boolean, default: false}
-})
+}, {timestamps: true})
 
-module.exports = mongoose.model('Client', clientSchema)
+module.exports = mongoose.model('Product', productSchema)
