@@ -15,18 +15,18 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //Initialize and Setup CORS
-const cors = require('cors');
-const whiteList = ['http://localhost:3000'];
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (whiteList.indexOf(origin) !== -1) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-    }
-};
-app.use(cors(corsOptions));
+// const cors = require('cors');
+// const whitelist = ['http://localhost:3000'];
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//         if (whitelist.indexOf(origin) !== -1) {
+//           callback(null, true);
+//         } else {
+//           callback(new Error('Not allowed by CORS'));
+//         }
+//     }
+// };
+// app.use(cors(corsOptions));
 
 //Initialize method-override
 const methodOverride = require('method-override');
@@ -53,6 +53,10 @@ app.use(session({
 /***************************************
 **** TODO: Section To Import Controllers 
 ***************************************/
+
+//Products Controller
+const productsController = require('./controllers/products.js');
+app.use('/watches', productsController);
 
 /*************************
 **** Server Listeners ****
