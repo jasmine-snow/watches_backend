@@ -49,39 +49,37 @@ router.get('/:id', (req, res) => {
 //Delete: Deletes Product
 router.delete('/:id', (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
-    if (err) {
-      res.status(400).json({ error: err.message })
+    if (err)
+      res.status(400).json({ error: err.message });
+    else {
+      console.log('Product Deleted:', deletedProduct)
+      res.status(200).json({status: 200, message: "Product ID " + deletedProduct._id + " deleted"});
     }
-    console.log('Product Deleted:', deletedProduct)
-    res.status(200).json(deletedProduct)
-  })
-})
+  });
+});
 
 //Post: Creates Product
 router.post('/', async (req, res) => {
   Product.create(req.body, (error, createdProduct) => {
-    if (error) {
-      res.status(400).json({ error: error.message })
+    if (error) 
+      res.status(400).json({ error: error.message });
+    else {
+      console.log('Product Created:', createdProduct)
+      res.status(200).json(createdProduct)
     }
-    console.log('Product Created:', createdProduct)
-    res.status(200).send(createdProduct)
-  })
-})
+  });
+});
 
 //Put: Edit Product
 router.put('/:id', (req, res) => {
   Product.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedProduct) => {
-    if (err) {
-      res.status(400).json({ error: err.message })
+    if (err) 
+      res.status(400).json({ error: err.message });
+    else {
+      console.log('Updated Product:', updatedProduct);
+      res.status(200).json(updatedProduct)
     }
-    console.log('Updated Product:', updatedProduct)
-    res.status(200).json(updatedProduct)
-  })
-})
-
-//Show: Shows Products
-
-
-
+  });
+});
 
 module.exports = router;
