@@ -58,6 +58,11 @@ app.use(session({
 const productsController = require('./controllers/products.js');
 app.use('/watches', productsController);
 
+
+//Users Controller
+const userController = require('./controllers/users.js')
+app.use('/user', userController);
+
 /*************************
 **** Server Listeners ****
 *************************/
