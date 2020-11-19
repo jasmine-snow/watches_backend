@@ -36,6 +36,16 @@ router.get('/', (req, res) => {
   });
 });
 
+// Show: Shows One Product
+router.get('/:id', (req, res) => {
+	Product.findById(req.params.id, (error, foundOneProduct) => {
+    if (error)
+      res.status(400).json({error: error.message});
+    else
+      res.status(200).json(foundOneProduct);
+  });
+});
+
 //Delete: Deletes Product
 router.delete('/:id', (req, res) => {
   Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
@@ -68,6 +78,9 @@ router.put('/:id', (req, res) => {
     res.status(200).json(updatedProduct)
   })
 })
+
+//Show: Shows Products
+
 
 
 
