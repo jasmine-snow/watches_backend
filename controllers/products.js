@@ -36,4 +36,29 @@ router.get('/', (req, res) => {
   });
 });
 
+//Delete: Product
+router.delete('/:id', (req, res) => {
+  Product.findByIdAndRemove(req.params.id, (err, deletedProduct) => {
+    if (err) {
+      res.status(400).json({ error: err.message })
+    }
+    console.log('Product Deleted:', deletedProduct)
+    res.status(200).json(deletedProduct)
+  })
+})
+
+//Post: Product
+router.post('/', async (req, res) => {
+  Product.create(req.body, (error, createdProduct) => {
+    if (error) {
+      res.status(400).json({ error: error.message })
+    }
+    console.log('Product Created:', createdProduct)
+    res.status(200).send(createdProduct) 
+  })
+})
+
+
+
+
 module.exports = router;

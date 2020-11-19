@@ -39,7 +39,7 @@ mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    useCreateIndex: true    
+    useCreateIndex: true
 });
 
 //Initialize and use express-session
@@ -51,7 +51,7 @@ app.use(session({
 }));
 
 /***************************************
-**** TODO: Section To Import Controllers 
+**** TODO: Section To Import Controllers
 ***************************************/
 
 //Products Controller
