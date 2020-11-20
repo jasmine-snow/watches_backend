@@ -65,7 +65,7 @@ app.use('/users', userController);
 
 //Sessions Controller
 const sessionsController = require('./controllers/sessions.js')
-app.use('/users', sessionsController);
+app.use('/sessions', sessionsController);
 
 /*************************
 **** Server Listeners ****
