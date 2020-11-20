@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 //Registers User
-router.post('/signup', (req, res) => {
+router.post('/register', (req, res) => {
   const userPassword = req.body.password
   const securePassword = bcrypt.hashSync(userPassword, bcrypt.genSaltSync(10))
   const userProfile = ({
@@ -24,12 +24,13 @@ router.post('/signup', (req, res) => {
     email: req.body.email,
     phone: req.body.phone,
   })
+
   User.create(userProfile, (error, createdUser) => {
     if (error) {
       res.status(400).json({ error: error.message })
     }
     console.log('Registered:', createdUser)
-    res.status(200).send(createdUser)
+    res.status(200).json(createdUser)
   })
 })
 
