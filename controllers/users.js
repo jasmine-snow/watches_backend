@@ -15,30 +15,29 @@ router.get('/', (req, res) => {
 
 //POST Method, creates a new user
 router.post('/register', (req, res) => {
-  //Check to see if a user with that name already exists
-  User.find({username: `${req.body.username}`}, (err, results) => {
+  //Check to see if a user with that email is already being used
+  User.find({email: `${req.body.email}`}, (err, results) => {
     if (err)
-      res.status(400).json({ error: "something happened" });
+      res.status(400).json({ error: "Error: Please Try Again" });
     else if (results.length)
-      res.status(400).json({ error: "Username already created"});
+      res.status(400).json({ error: "Email already in use"});
     else {
-      //We can make this use less lines if we want
-      const userPassword = req.body.password
-      const securePassword = bcrypt.hashSync(userPassword, bcrypt.genSaltSync(10))
-      const userProfile = ({
-        username: req.body.username,
-        password: securePassword,
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-      })
-      
-      User.create(userProfile, (error, createdUser) => {
-        if (error) {
-          res.status(400).json({ error: error.message })
+      //Check to see if a user with that name already exists
+      User.find({username: `${req.body.username}`}, (err, results) => {
+        if (err)
+          res.status(400).json({ error: "Error: Please Try Again" });
+        else if (results.length)
+          res.status(400).json({ error: "Username already in use"});
+        else {
+          req.body.password = bcrypt.hashSync(userPassword, bcrypt.genSaltSync(10));
+          User.create(req.body, (error, createdUser) => {
+          if (error) {
+            res.status(400).json({ error: error.message })
+          }
+          console.log('Registered:', createdUser)
+          res.status(200).json(createdUser)
+          });
         }
-        console.log('Registered:', createdUser)
-        res.status(200).json(createdUser)
       });
     }
   });
