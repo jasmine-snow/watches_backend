@@ -20,13 +20,13 @@ sessions.post('/', (req, res) => {
       console.log(error);
       res.status(400).json({error: error.message});
     } else if (!foundUser){
-      res.status(400).json({error: error.message});
+      res.status(400).json({error: 'Username/Password not a match'});
     } else {
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser
         res.status(200).json(foundUser)
       } else {
-        res.status(401).json({error: error.message});
+        res.status(401).json({error: 'Username/Password not a match'});
       }
     }
   })

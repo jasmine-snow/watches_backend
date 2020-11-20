@@ -50,9 +50,9 @@ app.use(session({
     saveUninitialized: false
 }));
 
-/***************************************
-**** TODO: Section To Import Controllers
-***************************************/
+/*********************
+***** Controllers ****
+**********************/
 
 //Products Controller
 const productsController = require('./controllers/products.js');

@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
         else if (results.length)
           res.status(400).json({ error: "Username already in use"});
         else {
-          req.body.password = bcrypt.hashSync(userPassword, bcrypt.genSaltSync(10));
+          req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
           User.create(req.body, (error, createdUser) => {
           if (error) {
             res.status(400).json({ error: error.message })
