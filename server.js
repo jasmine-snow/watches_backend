@@ -61,7 +61,7 @@ app.use('/watches', productsController);
 
 //Users Controller
 const userController = require('./controllers/users.js')
-app.use('/user', userController);
+app.use('/users', userController);
 
 /*************************
 **** Server Listeners ****
