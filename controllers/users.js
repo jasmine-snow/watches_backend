@@ -1,7 +1,24 @@
-const bcrypt = require('bcrypt');
+/*************************
+**** Users Controller ****
+*************************/
+
+/***************************
+**** Users Initializers ****
+****************************/
+
+//Initialize express
 const express = require('express');
-const User = require('../models/users.js');
 const router = express.Router();
+
+//Initialize bcrypt to encrypt passwords
+const bcrypt = require('bcrypt');
+
+//Import users model
+const User = require('../models/users.js');
+
+/********************
+**** Users Paths ****
+********************/
 
 //Gets User
 router.get('/', (req, res) => {
@@ -42,7 +59,5 @@ router.post('/register', (req, res) => {
     }
   });
 });
-
-
 
 module.exports = router;

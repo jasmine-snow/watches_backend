@@ -1,6 +1,6 @@
 /**********************
 **** Products Seed ****
-***********************/
+**********************/
 
 //Provides 3 products for database
 module.exports = [

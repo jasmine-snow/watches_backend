@@ -1,6 +1,10 @@
+/********************
+**** Users Model ****
+********************/
 
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+//Initialize mongoose and schema models
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
@@ -11,6 +15,6 @@ const userSchema = new Schema(
     password: { type: String, required: true },
   },
   { timestamps: true }
-)
+);
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema);

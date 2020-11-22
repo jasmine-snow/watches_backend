@@ -1,3 +1,7 @@
+/****************************
+**** Products Controller ****
+****************************/
+
 /******************************
 **** Products Initializers ****
 ******************************/
@@ -26,18 +30,34 @@ router.get('/seed', async (req, res) => {
   });
 });
 
-// Index: Getting all product
+// Index: Getting all products
 router.get('/', (req, res) => {
-  Product.find({}, (error, foundProduct) => {
+  Product.find({}, (error, foundProducts) => {
     if (error)
       res.status(400).json({error: error.message});
     else
-      res.status(200).json(foundProduct);
+      res.status(200).json(foundProducts);
+  });
+});
+
+//Search filter path: returns results based on query parameter
+router.get('/search/:query', (req, res) => {
+  Product.find({ $or: [
+    {name: new RegExp(req.params.query, 'gi')},
+    {description: new RegExp(req.params.query, 'gi')}, 
+    {material: new RegExp(req.params.query, 'gi')},
+    {color: new RegExp(req.params.query, 'gi')},
+    {strap: new RegExp(req.params.query, 'gi')}
+    ]}, (error, foundProducts) => {
+    if (error)
+      res.status(400).json({error: error.message});
+    else
+      res.status(200).json(foundProducts);
   });
 });
 
 // Show: Shows One Product
-router.get('/:id', (req, res) => {
+router.get('/id/:id', (req, res) => {
 	Product.findById(req.params.id, (error, foundOneProduct) => {
     if (error)
       res.status(400).json({error: error.message});

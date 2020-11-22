@@ -1,7 +1,24 @@
-const bcrypt = require('bcrypt');
+/****************************
+**** Sessions Controller ****
+****************************/
+
+/******************************
+**** Sessions Initializers ****
+******************************/
+
+//Initialize express
 const express = require('express');
 const sessions = express.Router();
+
+//Initialize bcrypt to encrypt passwords
+const bcrypt = require('bcrypt');
+
+//Import users model
 const User = require('../models/users.js');
+
+/***********************
+**** Sessions Paths ****
+***********************/
 
 //not sure if we need this path???- hab
 sessions.get('/login', (req, res) => {
@@ -12,6 +29,7 @@ sessions.get('/login', (req, res) => {
     res.status(200).json(signIn);
     });
 });
+
 
 //POST method for user sign
 sessions.post('/', (req, res) => {

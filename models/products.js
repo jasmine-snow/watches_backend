@@ -1,7 +1,14 @@
+/***********************
+**** Products Model ****
+***********************/
 
-const mongoose = require('mongoose')
+//Initialize mongoose
+const mongoose = require('mongoose');
 
+//Initialize mongoose-fuzzy-search
+const mongooseFuzzySearching = require('mongoose-fuzzy-searching');
 
+//Create Product Schema
 const productSchema = mongoose.Schema({
   name: {type: String, required: true},
   price: {type: Number, required: false},
@@ -13,4 +20,10 @@ const productSchema = mongoose.Schema({
   interchangeable: {type: Boolean, default: false}
 }, {timestamps: true});
 
-module.exports = mongoose.model('Product', productSchema)
+//Attach fuzzy searching to schema and specify which fields to fuzzy search for
+productSchema.plugin(mongooseFuzzySearching, {
+  fields: ['name', 'material', 'color', 'strap']
+});
+
+//Export Products model
+module.exports = mongoose.model('Product', productSchema);
