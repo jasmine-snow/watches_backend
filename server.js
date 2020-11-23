@@ -79,3 +79,7 @@ mongoose.connection.on('disconnected', () => console.log("*** MongoDB disconnect
 app.listen(port, () => {
     console.log("*** Express server running at localhost:" + port + " ***");
 });
+
+app.get('/', (req, res) => {
+    res.send("hello?")
+})
