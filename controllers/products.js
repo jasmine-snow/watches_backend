@@ -14,20 +14,26 @@ const router = express.Router();
 const Product = require("../models/products.js");
 
 //Import seed data
-const productSeed = require('../models/products-seed.js')
+const productSeed = require('../models/products-seed.js');
+const mongoose = require('mongoose');
 
 /*********************************
 **** Products Paths & Methods ****
 *********************************/
 
 //SEED route
-router.get('/seed', async (req, res) => {
-  Product.create(productSeed, (error, data) => {
-    if (error)
-      res.status(400).json({error: error.message});
-    else
-      res.status(200).json(data);
-  });
+router.post('/seed', async (req, res) => {
+  if (req.body.currentUser.username !== "admin")
+    res.status(403).json({error: "unauthorized access"});
+  else {
+    mongoose.connection.db.dropCollection('products');
+    Product.create(productSeed, (error, data) => {
+      if (error)
+        res.status(400).json({error: error.message});
+      else
+        res.status(200).json(data);
+    });
+  }
 });
 
 // Index: Getting all products
