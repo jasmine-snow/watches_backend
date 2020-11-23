@@ -14,7 +14,6 @@ const productSchema = mongoose.Schema({
   material: {type: String, required: false},
   color: {type: String, required: false},
   strap: {type: String, required: false},
-  interchangeable: {type: Boolean, default: false},
   qty: {type: Number, min: 0, required: true}
 }, {timestamps: true});
 
