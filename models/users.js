@@ -14,13 +14,15 @@ const userSchema = new Schema(
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },
+  //needed to add this to prevent write concern errors with heroku  
   {     
     writeConcern: {
       w: 'majority',
       j: true,
       wtimeout: 1000
     },
-    timestamps: true }, 
+    timestamps: true 
+  } 
 );
 
 module.exports = mongoose.model('User', userSchema);

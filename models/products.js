@@ -16,7 +16,8 @@ const productSchema = mongoose.Schema(
     color: {type: String, required: false},
     strap: {type: String, required: false},
     qty: {type: Number, min: 0, required: true}
-  },  
+  },
+  //needed to add this to prevent write concern errors with heroku  
   {     
     writeConcern: {
       w: 'majority',

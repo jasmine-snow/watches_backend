@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}));
 //respective path, so i worked around this by allowing undefined origins to be
 //whitelisted.
 const cors = require('cors');
-const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000', 'http://localhost:3008', 'https://fifth-hour-backend.herokuapp.com'];
+const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000', 'https://fifth-hour-backend.herokuapp.com'];
 const corsOptions = {
     origin: function (origin, callback) {
         console.log(origin);
