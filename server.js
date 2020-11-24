@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 
 //Initialize and Setup CORS
 const cors = require('cors');
-const whitelist = ['http://localhost:3000', 'https://fifth-hour-frontend.herokuapp.com', 'https://fifth-hour-backend.herokuapp.com'];
+const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000',  'https://fifth-hour-backend.herokuapp.com'];
 const corsOptions = {
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1) {
@@ -80,6 +80,7 @@ app.listen(port, () => {
     console.log("*** Express server running at localhost:" + port + " ***");
 });
 
+//delete this later
 app.get('/', (req, res) => {
     res.send("hello?")
 })
