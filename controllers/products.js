@@ -38,7 +38,6 @@ router.post('/seed', async (req, res) => {
 
 // Index: Getting all products
 router.get('/', (req, res) => {
-  // res.status(200).json({status: 200, message: "a hit"});
   Product.find({}, (error, foundProducts) => {
     if (error)
       res.status(400).json({error: error.message});
