@@ -8,13 +8,18 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    name: String,
-    phone: String,
+    name: { type: String, required: false },
+    phone: {type: String, required: false},
     email: {type: String, required: true, unique: true},
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+    }
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model('User', userSchema);
