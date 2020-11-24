@@ -81,6 +81,6 @@ app.listen(port, () => {
 });
 
 //delete this later
-app.get('/', cors(corsOptions), (req, res) => {
+app.get('/', (req, res) => {
     res.send("hello?")
 })
