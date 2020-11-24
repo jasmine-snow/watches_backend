@@ -16,14 +16,14 @@ app.use(express.urlencoded({extended: true}));
 
 //Initialize and Setup CORS
 const cors = require('cors');
-const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000',  'https://fifth-hour-backend.herokuapp.com'];
+const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000', 'http://localhost:3008', 'https://fifth-hour-backend.herokuapp.com'];
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
+    origin: function (origin, callback) {
+        console.log(origin);
+        if (whitelist.indexOf(origin) !== -1)
+            callback(null, true);
+        else
+            callback(new Error('Not allowed by cors'));
     }
 };
 app.use(cors(corsOptions));
@@ -81,6 +81,6 @@ app.listen(port, () => {
 });
 
 //delete this later
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
     res.send("hello?")
 })
