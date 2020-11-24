@@ -13,13 +13,14 @@ const userSchema = new Schema(
     email: {type: String, required: true, unique: true},
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+  },
+  {     
     writeConcern: {
       w: 'majority',
       j: true,
       wtimeout: 1000
-    }
-  },
-  { timestamps: true },
+    },
+    timestamps: true }, 
 );
 
 module.exports = mongoose.model('User', userSchema);
