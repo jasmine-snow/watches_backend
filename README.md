@@ -47,9 +47,8 @@ https://fifth-hour-frontend.herokuapp.com/
 ### Back-End Link
 
 https://fifth-hour-backend.herokuapp.com/
-
-https://github.com/goferboy/watches-frontend
-
+* Git Hub front-end  
+  * https://github.com/goferboy/watches-frontend
 
 #### Link to Wireframe
 
