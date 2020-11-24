@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
 router.get('/search/:query', (req, res) => {
   Product.find({ $or: [
     {name: new RegExp(req.params.query, 'gi')},
-    {description: new RegExp(req.params.query, 'gi')}, 
+    {description: new RegExp(req.params.query, 'gi')},
     {material: new RegExp(req.params.query, 'gi')},
     {color: new RegExp(req.params.query, 'gi')},
     {strap: new RegExp(req.params.query, 'gi')}
@@ -87,7 +87,7 @@ router.delete('/:id', (req, res) => {
 //Post: Creates Product
 router.post('/', async (req, res) => {
   Product.create(req.body, (error, createdProduct) => {
-    if (error) 
+    if (error)
       res.status(400).json({ error: error.message });
     else {
       console.log('Product Created:', createdProduct)
@@ -99,7 +99,7 @@ router.post('/', async (req, res) => {
 //Put: Edit Product
 router.put('/:id', (req, res) => {
   Product.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedProduct) => {
-    if (err) 
+    if (err)
       res.status(400).json({ error: err.message });
     else {
       console.log('Updated Product:', updatedProduct);
