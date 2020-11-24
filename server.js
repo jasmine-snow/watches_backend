@@ -15,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //Initialize and Setup CORS
+//There is a strange bug where some websites/origins turn up as undefined instead
+//respective path, so i worked around this by allowing undefined origins to be
+//whitelisted.
 const cors = require('cors');
 const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000', 'http://localhost:3008', 'https://fifth-hour-backend.herokuapp.com'];
 const corsOptions = {
