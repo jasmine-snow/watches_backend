@@ -15,18 +15,18 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //Initialize and Setup CORS
-// const cors = require('cors');
-// const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000', 'http://localhost:3008', 'https://fifth-hour-backend.herokuapp.com'];
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//         console.log(origin);
-//         if (whitelist.indexOf(origin) !== -1)
-//             callback(null, true);
-//         else
-//             callback(new Error('Not allowed by cors'));
-//     }
-// };
-// app.use(cors(corsOptions));
+const cors = require('cors');
+const whitelist = ['https://fifth-hour-frontend.herokuapp.com','http://localhost:3000', 'http://localhost:3008', 'https://fifth-hour-backend.herokuapp.com'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        console.log(origin);
+        if (whitelist.indexOf(origin) !== -1 || origin === undefined)
+            callback(null, true);
+        else
+            callback(new Error('Not allowed by cors'));
+    }
+};
+app.use(cors(corsOptions));
 
 //Initialize method-override
 const methodOverride = require('method-override');
@@ -82,5 +82,5 @@ app.listen(port, () => {
 
 //delete this later
 app.get('/', (req, res) => {
-    res.send("hello?")
+    res.send("You're not blocked by cors!")
 })
